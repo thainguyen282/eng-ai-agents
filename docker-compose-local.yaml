@@ -24,6 +24,19 @@ services:
       networks:
         - eng-ai-agents-net
 
+  postgres:
+    image: ankane/pgvector
+    container_name: pgvector
+    restart: always
+    environment:
+      POSTGRES_USER: youruser
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: vector_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
   # minio:
   #   image: minio/minio:latest
   #   container_name: minio
@@ -70,4 +83,5 @@ volumes:
   # minio_data:
   #postgresml_data:
   rye-cache:
+  pgdata:
 
